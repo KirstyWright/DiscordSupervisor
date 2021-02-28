@@ -54,7 +54,7 @@ class Bot(discord.Client):
                     return
                 subscription = subscription[1]
                 count = self.storage.select_multiple(
-                    "SELECT * FROM subscriptions WHERE process_name = ? ORDER BY id desc;", [subscription])
+                    "SELECT * FROM subscriptions WHERE process_name = ? AND channel_id = ? ORDER BY id desc;", [subscription, message.channel.id])
                 if (len(count) == 0):
                     self.storage.query("INSERT INTO subscriptions (process_name, channel_id, server_id) VALUES (?, ?, ?)", [
                                        subscription, message.channel.id, message.channel.guild.id])
