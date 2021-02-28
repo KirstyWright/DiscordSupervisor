@@ -20,7 +20,7 @@ class Bot(discord.Client):
     async def listen(self):
         while True:
             messages = self.storage.select_multiple(
-                "SELECT * FROM messages ORDER BY id desc;")
+                "SELECT * FROM messages ORDER BY id asc;")
 
             for message in messages:
                 try:
