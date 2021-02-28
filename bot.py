@@ -27,7 +27,7 @@ class Bot(discord.Client):
                     subscriptions = self.storage.select_multiple(
                         "SELECT * FROM subscriptions where process_name = ?", [message['process_name']])
                     for subscription in subscriptions:
-                        channel = self.get_channel(message['channel_id'])
+                        channel = self.get_channel(int(subscription['channel_id']))
                         embed = discord.Embed(
                             title="Notification", description="", color=0x00ff00)
                         embed.add_field(
